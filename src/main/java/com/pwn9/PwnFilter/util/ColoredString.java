@@ -8,18 +8,18 @@ import java.util.regex.Pattern;
 
 /**
  * This object is used to provide a mechanism for running regex match and replacements on a string that may
- * have Color Codes and formats (eg: §5§k) embedded in it.
- * NOTE: This object works on the section character (§), not ampersand (&).
+ * have Color Codes and formats (eg: �5�k) embedded in it.
+ * NOTE: This object works on the section character (�), not ampersand (&).
  *
  * Example String:
  * raw:
- * The quick §4brown fox §1§kj§2u§3m§4p§5e§6d over§7 the lazy §ldog.
+ * The quick �4brown fox �1�kj�2u�3m�4p�5e�6d over�7 the lazy �ldog.
  * plain:
  * The quick brown fox jumped over the lazy dog
  * codes:
- * {,,,,,,,,,,§4,,,,,,,,,§1§k,§2,§3,§4,§5,§6,,,,,§7,,,,,,,,,§l,,,}
+ * {,,,,,,,,,,�4,,,,,,,,,�1�k,�2,�3,�4,�5,�6,,,,,�7,,,,,,,,,�l,,,}
  *
- * The codes array maps codes to the character following it.  In the example above, plain[10] = 'b', codes[10] = "§4"
+ * The codes array maps codes to the character following it.  In the example above, plain[10] = 'b', codes[10] = "�4"
  *
  * In any string modification action, the codes will be updated to reflect the new string.
  *

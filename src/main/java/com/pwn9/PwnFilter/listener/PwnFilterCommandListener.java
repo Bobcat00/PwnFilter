@@ -19,7 +19,7 @@ public class PwnFilterCommandListener implements Listener {
     private final PwnFilter plugin;
 
     public PwnFilterCommandListener(PwnFilter p) {
-	    plugin = p;
+        plugin = p;
         PluginManager pm = Bukkit.getPluginManager();
 
         pm.registerEvent(PlayerCommandPreprocessEvent.class, this, PwnFilter.cmdPriority,

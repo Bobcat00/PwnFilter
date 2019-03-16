@@ -6,7 +6,6 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
@@ -92,13 +91,13 @@ public class DataCache {
           grab the list of online players, and add it to the list.
          */
         if (queuedPlayerList.size() < 1) {
-            Player[] onlinePlayers = Bukkit.getOnlinePlayers();
-            if (onlinePlayers.length > 0) {
-                queuedPlayerList.addAll(Arrays.asList(onlinePlayers));
+            ArrayList<Player> onlinePlayers = new ArrayList<Player>(Bukkit.getOnlinePlayers());
+            if (onlinePlayers.size() > 0) {
+                queuedPlayerList.addAll(onlinePlayers);
             }
             // Clear out stale data
             for (Player p : playerName.keySet() ) {
-                if (!Arrays.asList(onlinePlayers).contains(p)) {
+                if (!onlinePlayers.contains(p)) {
                     playerName.remove(p);
                     playerWorld.remove(p);
                     playerPermissions.remove(p);
@@ -131,7 +130,7 @@ public class DataCache {
     public void dumpCache(Logger l) {
         l.finest("PwnFilter Data Cache Contents:");
         l.finest("Task Id: " + taskId);
-        l.finest("Online Players: " + Bukkit.getOnlinePlayers().length);
+        l.finest("Online Players: " + Bukkit.getOnlinePlayers().size());
         l.finest("Total Names: " + playerName.size() + " Worlds: " + playerWorld.size() + " Perms: " + playerPermissions.size());
         StringBuilder sb = new StringBuilder();
         for (Player p : queuedPlayerList ){

@@ -14,7 +14,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.Metrics;
+//import org.mcstats.Metrics;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -108,30 +108,30 @@ public class PwnFilter extends JavaPlugin {
 
     public void activateMetrics() {
         // Activate Plugin Metrics
-        try {
-            Metrics metrics = new Metrics(this);
-
-            Metrics.Graph graph = metrics.createGraph("Rules by Event");
-
-            for (final EventType r : EventType.values()) {
-                graph.addPlotter(new Metrics.Plotter(r.toString()) {
-                    @Override
-                    public int getValue() {
-                        return ruleset.ruleCount(r); // Number of rules for this event type
-                    }
-                });
-            }
-
-            Metrics.Graph matchGraph = metrics.createGraph("Matches");
-            matchTracker = new Tracker("Matches");
-
-            matchGraph.addPlotter(matchTracker);
-
-            metrics.start();
-
-        } catch (IOException e) {
-            logger.fine(e.getMessage());
-        }
+//        try {
+//            Metrics metrics = new Metrics(this);
+//
+//            Metrics.Graph graph = metrics.createGraph("Rules by Event");
+//
+//            for (final EventType r : EventType.values()) {
+//                graph.addPlotter(new Metrics.Plotter(r.toString()) {
+//                    @Override
+//                    public int getValue() {
+//                        return ruleset.ruleCount(r); // Number of rules for this event type
+//                    }
+//                });
+//            }
+//
+//            Metrics.Graph matchGraph = metrics.createGraph("Matches");
+//            matchTracker = new Tracker("Matches");
+//
+//            matchGraph.addPlotter(matchTracker);
+//
+//            metrics.start();
+//
+//        } catch (IOException e) {
+//            logger.fine(e.getMessage());
+//        }
 
     }
     public void registerListeners() {

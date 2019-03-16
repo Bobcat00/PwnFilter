@@ -17,7 +17,7 @@ import org.bukkit.plugin.PluginManager;
 public class PwnFilterEntityListener implements Listener {
     private final PwnFilter plugin;
 
-	public PwnFilterEntityListener(PwnFilter p) {
+    public PwnFilterEntityListener(PwnFilter p) {
         plugin = p;
         PluginManager pm = Bukkit.getServer().getPluginManager();
 

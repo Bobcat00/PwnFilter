@@ -19,7 +19,7 @@ import org.bukkit.plugin.PluginManager;
 public class PwnFilterPlayerListener implements Listener {
     private final PwnFilter plugin;
 
-	public PwnFilterPlayerListener(PwnFilter p) {
+    public PwnFilterPlayerListener(PwnFilter p) {
         plugin = p;
         PluginManager pm = Bukkit.getServer().getPluginManager();
 
