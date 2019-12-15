@@ -3,7 +3,6 @@ package com.pwn9.PwnFilter.rules.action;
 import com.pwn9.PwnFilter.FilterState;
 import com.pwn9.PwnFilter.util.Patterns;
 import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * Execute a chain of console commands
@@ -22,7 +21,7 @@ public class Actionconchain implements Action {
         String cmdchain[] = cmds.split("\\|");
         for (final String cmd : cmdchain) {
             state.addLogMessage("Sending console command: " + cmd);
-            Bukkit.getScheduler().runTask(state.plugin, new BukkitRunnable() {
+            Bukkit.getScheduler().runTask(state.plugin, new Runnable() {
                 @Override
                 public void run() {
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);

@@ -3,7 +3,6 @@ package com.pwn9.PwnFilter.rules.action;
 import com.pwn9.PwnFilter.FilterState;
 import com.pwn9.PwnFilter.PwnFilter;
 import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * Kick the user with a customized message.
@@ -21,7 +20,7 @@ public class Actionkick implements Action {
     public boolean execute(final FilterState state ) {
 
         state.addLogMessage("Kicked " + state.playerName + ": " + messageString);
-        Bukkit.getScheduler().runTask(state.plugin, new BukkitRunnable() {
+        Bukkit.getScheduler().runTask(state.plugin, new Runnable() {
             @Override
             public void run() {
                 state.player.kickPlayer(messageString);

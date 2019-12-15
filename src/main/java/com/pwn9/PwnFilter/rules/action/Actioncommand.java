@@ -3,7 +3,6 @@ package com.pwn9.PwnFilter.rules.action;
 import com.pwn9.PwnFilter.FilterState;
 import com.pwn9.PwnFilter.util.Patterns;
 import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * Execute a command as a player.
@@ -27,7 +26,7 @@ public class Actioncommand implements Action {
             cmd = state.message.getColoredString();
         }
         state.addLogMessage("Helped " + state.playerName + " execute command: " + cmd);
-        Bukkit.getScheduler().runTask(state.plugin, new BukkitRunnable() {
+        Bukkit.getScheduler().runTask(state.plugin, new Runnable() {
             @Override
             public void run() {
                 state.player.chat("/" + cmd);
