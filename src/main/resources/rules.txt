@@ -20,30 +20,463 @@
 # For more details visit http://dev.bukkit.org/server-mods/pwnfilter/
 # In "then command" statements, you can use &world, &player, &string, or &rawstring
 
-# EXAMPLES
-
-# Replace F Bomb variants with fudge. Also catches ffffuuuccckkk
-match f+u+c+k+|f+u+k+|f+v+c+k+|f+u+q+
-then replace fudge
-then warn Watch your language please
+# fuck
+match f\W*[uv]+\W*c+\W*k|f\W*u+\W*[kq]\b
+#match \bf+\W*[uv]+\W*c+\W*k|\bf+\W*u+\W*[kq]\b
+then deny
+then warn Watch your language please (1)
 then log
+then abort
 
-# Replace a list of naughty words with random word! Let a certain permission swear.
-match cunt|whore|fag|slut|queer|bitch|bastard
-ignore permission permission.node
-then randrep meep|beep|bleep|herp|derp
+# shit
+match [5$]\W*h+\W*[i1!]+\W*t|\bs\W*h+\W*[i1!]+\W*t
+then deny
+then warn Watch your language please (2)
+then log
+then abort
 
+# ass
+#match \b[a4]+\W*[s5$]+\W*[s5$]+\W*\b|[a4]+\W*[s5$]+\W*[s5$]+\W*h+\W*[o0]+\W*l+\W*e|d+\W*u+\W*m+\W*b+\W*[a4@]+\W*[s5$]+\W*[s5$]|j+\W*[a4@]+\W*c+\W*k+\W*[a4@]+\W*[s5$]+\W*[s5$]
+match [a4]+\W*[s5$]+\W*[s5$]+\W*h+\W*[o0]+\W*l+\W*e|d+\W*u+\W*m+\W*b+\W*[a4@]+\W*[s5$]+\W*[s5$]|j+\W*[a4@]+\W*c+\W*k+\W*[a4@]+\W*[s5$]+\W*[s5$]
+then deny
+then warn Watch your language please (3)
+then log
+then abort
 
-# FIX the .command typo with /command
-# But don't apply this to signs
-match ^\.(?=[a-z]+)
-events not sign
-then replace
-then command
+# bastard
+match b\W*[a@4]+\W*[s$5]+\W*t+\W*[a@4]+\W*r+\W*d
+then deny
+then warn Watch your language please (4)
+then log
+then abort
 
-# Fun: rewrite tremor with pretty colors. Only let player tremor77 use it
-# Only do this for chat events
-match \btremor+\b|\btrem+\b
-events chat
-require user tremor77
-then rewrite &bt&cREM&bor&f
+# bitch
+match b\W*[i1!]+\W*t+\W*[c(]+\W*h|b\W*[i1!]+\W*[a4@]+\W*t+\W*[c(]+\W*h
+then deny
+then warn Watch your language please (5)
+then log
+then abort
+
+# cock
+match [c(]\W*[o0]+\W*[c(]+\W*k
+then deny
+then kick Kicked for inappropriate language (6)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# cunt
+match [c(]\W*u+\W*n+\W*t
+then deny
+then kick Kicked for inappropriate language (7)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# dick
+match d+\W*[i1!]+\W*c+\W*k
+then deny
+then warn Watch your language please (8)
+then log
+then abort
+
+# nigger
+match n\W*[i1!]+\W*g\W*g+\W*e+\W*r|n\W*[i1!]+\W*g\W*g+\W*[a@4]
+then deny
+then kick Kicked for inappropriate language (9)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# negro
+match n\W*e+\W*g+\W*r+\W*[o0]
+then deny
+then warn Watch your language please (10)
+then log
+then abort
+
+# fag
+match \bf\W*[a@4]+\W*g
+then deny
+then kick Kicked for inappropriate language (11)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# slut
+match \b[s$5]\W*l+\W*u+\W*t
+then deny
+then kick Kicked for inappropriate language (12)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# whore
+match w\W*h\W*[o0]+[^a-zA-Z0-9']*r\W*e
+then deny
+then kick Kicked for inappropriate language (13)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# cum/cumming
+match ((\b)c[\W]*u+[\W]*m+(\b|([i1!]+n+g)))
+then deny
+then kick Kicked for inappropriate language (14)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# cumguzzler
+match c\W*u+\W*m+\W*g\W*u\W*[z2]\W*[z2]+\W*l\W*e
+then deny
+then kick Kicked for inappropriate language (15)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# handjob
+match h\W*[a@4]+\W*n+\W*d+\W*j+\W*[o0]+\W*b
+then deny
+then kick Kicked for inappropriate language (16)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# blowjob
+match b\W*[l!1]+\W*[o0]+\W*w+\W*j+\W*[o0]+\W*b
+then deny
+then kick Kicked for inappropriate language (17)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# dildo
+match \bd\W*[i1!]+\W*[l!1]+\W*d+\W*[o0]
+then deny
+then warn Watch your language please (18)
+then log
+then abort
+
+# jackoff
+match j\W*[a4@]+\W*c+\W*k+\W*[o0]+\W*f+\W*f
+then deny
+then kick Kicked for inappropriate language (19)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# penis
+match p\W*e+\W*n+\W*[i!1]+\W*[s$5]
+then deny
+then kick Kicked for inappropriate language (20)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# boner
+match b\W*[o0]+\W*n+\W*e+\W*r
+then deny
+then kick Kicked for inappropriate language (21)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# anal
+#match \ba+\W*n+\W*[a@4]+\W*[l1!]|[4@]+\W*n+\W*[a@4]+\W*[l1!]
+match \b[a4@]+\W*n+\W*[a@4]+\W*[l1!]+\b|\b[a4@]+\W*n+\W*[a@4]+\W*[l1!]+\W*p+\W*[l1!]*\W*u+\W*g+\b
+then deny
+then warn Watch your language please (22)
+then log
+then abort
+
+# fisting
+#match \bf\W*[i1!]+\W*[s$5]+\W*t+\W*[i1!]+\W*n+\W*g
+#then deny
+#then kick Kicked for inappropriate language (23)
+#then console say &player kicked for inappropriate language
+#then log
+#then abort
+
+# prick
+match \bp\W*r+\W*[i1!]+\W*c+\W*k\b
+then deny
+then kick Kicked for inappropriate language (24)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# anus
+match \b[a4]\W*h?n+\W*u+\W*[s$5]|[@]\W*h?n+\W*u+\W*[s$5]
+then deny
+then warn Watch your language please (25)
+then log
+then abort
+
+# arse
+match \b[a4]+\W*r+\W*[s$5]+\W*e\b|@+\W*r+\W*[s$5]+\W*e
+then deny
+then warn Watch your language please (26)
+then log
+then abort
+
+# bollock
+#match b\W*[o0]+\W*[l!1]+\W*[!1l]+\W*[o0]+\W*c+\W*k
+#then deny
+#then warn Watch your language please (27)
+#then log
+#then abort
+
+# clit
+match \bc+\W*[l1!]+\W*[i1!]+\W*t
+then deny
+then kick Kicked for inappropriate language (28)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# coon
+match \bc\W*[o0]+\W*[o0]+\W*n
+then deny
+then kick Kicked for inappropriate language (29)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# feck
+match \bf\W*e+\W*c+\W*k
+then deny
+then warn Watch your language please (30)
+then log
+then abort
+
+# fellattio
+match f\W*e\W*[l1!]+\W*[l1!]+\W*[a4@]+\W*t
+then deny
+then kick Kicked for inappropriate language (31)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# felch
+#match f\W*e+\W*[l1!]+\W*c+\W*h
+#then deny
+#then warn Watch your language please (32)
+#then log
+#then abort
+
+# flange
+#match f\W*[l1!]+\W*[a4@]+\W*n+\W*g+\W*e
+#then deny
+#then warn Watch your language please (33)
+#then log
+#then abort
+
+# homo
+match \bh\W*[o0]+\W*m+\W*[o0]
+then deny
+then kick Kicked for inappropriate language (34)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# jiz
+match \bj\W*[i1!]+\W*[z2]
+then deny
+then kick Kicked for inappropriate language (35)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# knob
+#match \bk\W*n+\W*[o0]+\W*b
+#then deny
+#then warn Watch your language please (36)
+#then log
+#then abort
+
+# labia
+match \b[l1!]\W*[a4@]+\W*b+\W*[i1!]+\W*[a4@]
+then deny
+then kick Kicked for inappropriate language (37)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# muff
+match \bm\W*u+\W*f+\W*\b
+then deny
+then warn Watch your language please (38)
+then log
+then abort
+
+# pussy
+match p\W*u+\W*[s$5]+\W*[s$5]+\W*y|p\W*u+\W*[s$5]+\W*[s$5]+\W*[i1!]
+then deny
+then warn Watch your language please (39)
+then log
+then abort
+
+# queer
+match q\W*u+\W*e+\W*e\W*r
+then deny
+then kick Kicked for inappropriate language (40)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# scrotum
+match [s$5]\W*c+\W*r+\W*[o0]+\W*t+\W*u+\W*m
+then deny
+then warn Watch your language please (41)
+then log
+then abort
+
+# smegma
+#match [s$5]\W*m+\W*e+\W*g+\W*m+\W*[a@4]
+#then deny
+#then warn Watch your language please (42)
+#then log
+#then abort
+
+# spunk
+match [s$5]\W*p+\W*u+\W*n+\W*k
+then deny
+then kick Kicked for inappropriate language (43)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# twat
+match \bt\W*w+\W*[a4@]+\W*t\b
+then deny
+then kick Kicked for inappropriate language (44)
+then console say &player kicked for inappropriate language
+then log
+then abort
+
+# vagina | vag inc. \/agina
+match (v|\\\/)\W*[a4@]+\W*g+\W*[i1!]+\W*n+\W*[a4@]|(v|\\\/)+\W*[a4@]+\W*g\b
+then deny
+then warn Watch your language please (45)
+then log
+then abort
+
+# wank | wanker
+match w\W*[a@4]+\W*n+\W*k\b|w\W*[a@4]+\W*n+\W*k+e+\W*r
+then deny
+then warn Watch your language please (46)
+then log
+then abort
+
+# sex
+#match \b[s5]\W*e+\W*x|\$\W*e+\W*x
+#then deny
+#then warn Watch your language please (47)
+#then log
+#then abort
+
+# rape
+match \br\W*[a4@]+\W*p+\W*e
+then deny
+then warn Watch your language please (48)
+then log
+then abort
+
+# rapist
+match r\W*[a4@]+\W*p+\W*[i1!]+\W*[s$5]+\W*t
+then deny
+then warn Watch your language please (49)
+then log
+then abort
+
+# fck
+match f\W*c\W*k
+then deny
+then warn Watch your language please (50)
+then log
+then abort
+
+# gay
+#match \bg\W*[a4@]+\W*y
+#then deny
+#then warn Watch your language please (51)
+#then log
+#then abort
+
+# lesbian
+match \b[l1!]\W*e+\W*[s$5]+\W*b+\W*[i1!]+\W*[a4@]+\W*n
+then deny
+then warn Watch your language please (52)
+then log
+then abort
+
+# lezza
+match [l1!]\W*e\W*[z2]\W*[z2]+\W*[a4@]
+then deny
+then warn Watch your language please (53)
+then log
+then abort
+
+# piss
+#match \bp\W*[i1!]+\W*[s$5]\W*[s$5]
+#then deny
+#then warn Watch your language please (54)
+#then log
+#then abort
+
+# titties
+match \bt\W*[i1!]+\W*t+\W*[i1!]+\W*e*\W*[s$5]
+then deny
+then warn Watch your language please (55)
+then log
+then abort
+
+# tits
+#match [^a-zA-Z']t\W*[i1!]+\W*t\W*[s$5]
+match \bt\W*[i1!]+\W*t\W*[s$5]
+then deny
+then warn Watch your language please (56)
+#then kick Kicked for inappropriate language (56)
+#then console say &player kicked for inappropriate language
+then log
+then abort
+
+# fu
+match \bf\W*u\b
+then deny
+then warn Watch your language please (57)
+then log
+then abort
+
+# stfu
+match \bstfu
+then deny
+then warn Watch your language please (58)
+then log
+then abort
+
+# horny horney horni hornie
+match \bh\W*[o0]+\W*r+\W*n+\W*e*\W*y|\bh\W*[o0]+\W*r+\W*n+\W*[i1!]+\W*e*|\bh\W*[o0]+\W*r+\W*n+\W*e
+then deny
+then warn Watch your language please (59)
+then log
+then abort
+
+# server sucks > server rocks
+match server sucks
+then replace server rocks
+then log
+then abort
+
+# kys > ily
+match \bk\s?y\s?s\b
+then replace ily
+then log
+then abort
+
+# kill yourself > I love you
+match kill your\s?self
+then replace I love you
+then log
+then abort
