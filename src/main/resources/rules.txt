@@ -81,7 +81,7 @@ then log
 then abort
 
 # nigger
-match n\W*[i1!]+\W*g\W*g+\W*e+\W*r|n\W*[i1!]+\W*g\W*g+\W*[a@4]
+match n\W*[i14!]+\W*g\W*g+\W*e+\W*r|n\W*[i14!]+\W*g\W*g+\W*[a@4]
 then deny
 then kick Kicked for inappropriate language (9)
 then console say &player kicked for inappropriate language
@@ -143,8 +143,8 @@ then console say &player kicked for inappropriate language
 then log
 then abort
 
-# blowjob
-match b\W*[l!1]+\W*[o0]+\W*w+\W*j+\W*[o0]+\W*b
+# blowjob / blow me
+match b\W*[l!1]+\W*[o0]+\W*w+\W*j+\W*[o0]+\W*b|b\W*[l!1]+\W*[o0]+\W*w+\W*m+\W*e
 then deny
 then kick Kicked for inappropriate language (17)
 then console say &player kicked for inappropriate language
@@ -405,7 +405,7 @@ then abort
 #then abort
 
 # lesbian
-match \b[l1!]\W*e+\W*[s$5]+\W*b+\W*[i1!]+\W*[a4@]+\W*n
+match \b[l1!]\W*e+\W*[s$5]+\W*b+\W*[i1!]+\W*[a4@]+\W*n\b
 then deny
 then warn Watch your language please (52)
 then log
@@ -460,6 +460,14 @@ then abort
 match \bh\W*[o0]+\W*r+\W*n+\W*e*\W*y|\bh\W*[o0]+\W*r+\W*n+\W*[i1!]+\W*e*|\bh\W*[o0]+\W*r+\W*n+\W*e
 then deny
 then warn Watch your language please (59)
+then log
+then abort
+
+# dyke
+match d+\W*[yi!]+\W*k+\W*e
+then deny
+then kick Kicked for inappropriate language (60)
+then console say &player kicked for inappropriate language
 then log
 then abort
 
