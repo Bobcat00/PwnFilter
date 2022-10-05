@@ -51,13 +51,14 @@ cmdblist:
 
 #### ADVANCED #####
 # Note: You can also change the priority of event handlers with:
-# priority, cmdpriority and signpriority
+# chatpriority, cmdpriority and signpriority
 # Changing priority can allow the event handlers to process messages before or after other
 # plugins.  This can sometimes help with plugin conflicts.  You really should know what you
 # are doing before you change these. :)
 
 # Change priority of PlayerListener (chat)
 # chatpriority: lowest #(default)
+chatpriority: LOW
 
 # Change priority of CommandListener
 # cmdpriority: lowest #(default)
@@ -67,7 +68,3 @@ cmdblist:
 
 # Change priority of ItemListener
 # itempriority: lowest
-
-
-
-
