@@ -18,6 +18,10 @@ public class Actionkill implements Action {
     }
 
     public boolean execute(final FilterState state ) {
+        if (state.isPreview()) {
+            return false;
+        }
+
         state.plugin.killedPlayers.put(state.player, state.playerName + " " + messageString);
         state.addLogMessage("Killed by Filter: " + state.playerName + " " + messageString);
 

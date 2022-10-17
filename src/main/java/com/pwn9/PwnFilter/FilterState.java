@@ -28,6 +28,7 @@ public class FilterState {
     public final Player player; // Player that this event is connected to.
     public final String playerName,playerWorldName;
     public final PwnFilter.EventType eventType;
+    private final boolean preview; // Preview event - Restricts which actions can be used
     public ColoredString message; // Modified message string
     final int messageLen; // New message can't be longer than original.
     private List<String> logMessages = new ArrayList<String>(); // Rules can add strings to this array.  They will be output to log if log=true
@@ -46,7 +47,7 @@ public class FilterState {
      *
      * @param m The original text string to run rules against.
      */
-    public FilterState(PwnFilter pl, String m, Player p, PwnFilter.EventType et) {
+    public FilterState(PwnFilter pl, String m, Player p, PwnFilter.EventType et, boolean pr) {
         originalMessage = new ColoredString(m);
         message = new ColoredString(m);
         messageLen = originalMessage.length();
@@ -55,6 +56,7 @@ public class FilterState {
         playerWorldName = PwnFilter.dataCache.getPlayerWorld(p);
         plugin = pl;
         eventType = et;
+        preview = pr;
     }
 
     /**
@@ -86,5 +88,9 @@ public class FilterState {
      */
     public ColoredString getOriginalMessage() {
         return new ColoredString(originalMessage);
+    }
+
+    public boolean isPreview() {
+        return preview;
     }
 }

@@ -17,6 +17,10 @@ public class Actionconsole implements Action {
     }
 
     public boolean execute(final FilterState state ) {
+        if (state.isPreview()) {
+            return false;
+        }
+
         final String cmd = Patterns.replaceCommands(command, state);
         state.addLogMessage("Sending console command: " + cmd);
         Bukkit.getScheduler().runTask(state.plugin, new Runnable() {

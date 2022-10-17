@@ -66,8 +66,7 @@ public class PwnFilterCommandListener implements Listener {
         }
 
 
-        FilterState state = new FilterState(plugin, message, player,
-                PwnFilter.EventType.COMMAND);
+        FilterState state = new FilterState(plugin, message, player, PwnFilter.EventType.COMMAND, false);
 
         // Global decolor
         if ((PwnFilter.decolor) && !(dCache.hasPermission(player,"pwnfilter.color"))) {

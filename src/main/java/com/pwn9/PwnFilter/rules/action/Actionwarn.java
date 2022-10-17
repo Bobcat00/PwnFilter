@@ -19,6 +19,10 @@ public class Actionwarn implements Action {
 
     public boolean execute(final FilterState state ) {
 
+        if (state.isPreview()) {
+            return false;
+        }
+
         state.addLogMessage("Warned " + state.playerName + ": " + messageString);
         Bukkit.getScheduler().runTask(state.plugin, new Runnable() {
             @Override

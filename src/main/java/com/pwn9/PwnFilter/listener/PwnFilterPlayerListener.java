@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatPreviewEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.EventExecutor;
 import org.bukkit.plugin.PluginManager;
@@ -30,6 +31,15 @@ public class PwnFilterPlayerListener implements Listener {
                 },
                 plugin);
 
+        // Chat preview event
+        if (plugin.getConfig().getBoolean("chatpreview", false)) {
+            pm.registerEvent(AsyncPlayerChatPreviewEvent.class, this, PwnFilter.chatPriority,
+                    new EventExecutor() {
+                        public void execute(Listener l, Event e) { onPlayerChat((AsyncPlayerChatPreviewEvent)e); }
+                    },
+                    plugin);
+        }
+
         pm.registerEvent(PlayerQuitEvent.class, this, PwnFilter.chatPriority,
                 new EventExecutor() {
                     public void execute(Listener l, Event e) { onPlayerQuit((PlayerQuitEvent)e); }
@@ -50,6 +60,9 @@ public class PwnFilterPlayerListener implements Listener {
 
         if (event.isCancelled()) return;
 
+        // Chat preview - Only need to check this in listeners registered to chat previews
+        boolean preview = event instanceof AsyncPlayerChatPreviewEvent;
+
         final Player player = event.getPlayer();
         DataCache dCache = PwnFilter.dataCache;
 
@@ -58,23 +71,24 @@ public class PwnFilterPlayerListener implements Listener {
 
         String message = event.getMessage();
 
-        // Global mute
-        if ((PwnFilter.pwnMute) && (!(dCache.hasPermission(player, "pwnfilter.bypass.mute")))) {
-            event.setCancelled(true);
-            return; // No point in continuing.
-        }
-
-        if (plugin.getConfig().getBoolean("spamfilter") && !dCache.hasPermission(player,"pwnfilter.bypass.spam")) {
-            // Keep a log of the last message sent by this player.  If it's the same as the current message, cancel.
-            if (PwnFilter.lastMessage.containsKey(player) && PwnFilter.lastMessage.get(player).equals(message)) {
+        if (!preview) {
+            // Global mute
+            if ((PwnFilter.pwnMute) && (!(dCache.hasPermission(player, "pwnfilter.bypass.mute")))) {
                 event.setCancelled(true);
-                return;
+                return; // No point in continuing.
             }
-            PwnFilter.lastMessage.put(player, message);
 
+            if (plugin.getConfig().getBoolean("spamfilter") && !dCache.hasPermission(player,"pwnfilter.bypass.spam")) {
+                // Keep a log of the last message sent by this player.  If it's the same as the current message, cancel.
+                if (PwnFilter.lastMessage.containsKey(player) && PwnFilter.lastMessage.get(player).equals(message)) {
+                    event.setCancelled(true);
+                    return;
+                }
+                PwnFilter.lastMessage.put(player, message);
+            }
         }
 
-        FilterState state = new FilterState(plugin, message, event.getPlayer(), PwnFilter.EventType.CHAT);
+        FilterState state = new FilterState(plugin, message, event.getPlayer(), PwnFilter.EventType.CHAT, preview);
 
         // Global decolor
         if ((PwnFilter.decolor) && !(dCache.hasPermission(player, "pwnfilter.color"))) {
@@ -89,9 +103,7 @@ public class PwnFilterPlayerListener implements Listener {
         if (state.messageChanged()){
             event.setMessage(state.message.getColoredString());
         }
-        if (state.cancel) event.setCancelled(true);
+        if (state.cancel && !state.isPreview()) event.setCancelled(true);
     }
 
 }
-
-

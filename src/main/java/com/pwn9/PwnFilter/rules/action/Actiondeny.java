@@ -14,6 +14,10 @@ public class Actiondeny implements Action {
     }
 
     public boolean execute(final FilterState state ) {
+        if (state.isPreview()) {
+            return false;
+        }
+
         state.cancel = true;
         return true;
     }

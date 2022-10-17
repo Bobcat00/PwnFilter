@@ -60,7 +60,7 @@ public class PwnFilterInvListener implements Listener {
         if (itemMeta.hasDisplayName()) {
             message = itemMeta.getDisplayName();
 
-            FilterState state = new FilterState(plugin, message, player, PwnFilter.EventType.ITEM);
+            FilterState state = new FilterState(plugin, message, player, PwnFilter.EventType.ITEM, false);
 
             PwnFilter.ruleset.runFilter(state);
             if (state.cancel) event.setCancelled(true);
@@ -73,8 +73,6 @@ public class PwnFilterInvListener implements Listener {
                 newItem.setItemMeta(newItemMeta);
                 event.setCurrentItem(newItem);
             }
-
-
 
         }
 

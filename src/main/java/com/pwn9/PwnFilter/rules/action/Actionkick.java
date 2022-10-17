@@ -19,6 +19,10 @@ public class Actionkick implements Action {
 
     public boolean execute(final FilterState state ) {
 
+        if (state.isPreview()) {
+            return false;
+        }
+
         state.addLogMessage("Kicked " + state.playerName + ": " + messageString);
         Bukkit.getScheduler().runTask(state.plugin, new Runnable() {
             @Override

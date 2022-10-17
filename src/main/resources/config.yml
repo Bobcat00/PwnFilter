@@ -20,9 +20,11 @@ logfile: true
 # off, low, medium, high
 debug: false
 
-
 # Strip color from chat. Permission to bypass pwnfilter.color or pwnfilter.bypass
 decolor: true
+
+# Enable chat preview
+chatpreview: false
 
 # Filter commands as well as chat true/false
 commandfilter: true

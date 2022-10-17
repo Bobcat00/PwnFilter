@@ -21,6 +21,10 @@ public class Actionburn implements Action {
     }
 
     public boolean execute(final FilterState state ) {
+        if (state.isPreview()) {
+            return false;
+        }
+
         Bukkit.getScheduler().runTask(state.plugin, new Runnable() {
             @Override
             public void run() {

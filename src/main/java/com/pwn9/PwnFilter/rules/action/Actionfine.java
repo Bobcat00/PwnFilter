@@ -34,6 +34,10 @@ public class Actionfine implements Action {
     }
 
     public boolean execute(final FilterState state ) {
+        if (state.isPreview()) {
+            return false;
+        }
+
         if (PwnFilter.economy != null ) {
             EconomyResponse resp = PwnFilter.economy.withdrawPlayer(state.playerName,fineAmount);
             if (resp.transactionSuccess()) {

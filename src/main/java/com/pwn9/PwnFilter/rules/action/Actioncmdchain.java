@@ -19,6 +19,10 @@ public class Actioncmdchain implements Action {
     }
 
     public boolean execute(final FilterState state ) {
+        if (state.isPreview()) {
+            return false;
+        }
+
         state.cancel = true;
         String cmds = Patterns.replaceCommands(commands,state);
         String cmdchain[] = cmds.split("\\|");

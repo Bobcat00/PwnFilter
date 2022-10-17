@@ -52,7 +52,7 @@ public class PwnFilterSignListener implements Listener {
         }
         String signLines = builder.toString();
 
-        FilterState state = new FilterState(plugin, signLines, event.getPlayer(), PwnFilter.EventType.SIGN);
+        FilterState state = new FilterState(plugin, signLines, event.getPlayer(), PwnFilter.EventType.SIGN, false);
 
         PwnFilter.ruleset.runFilter(state);
 
