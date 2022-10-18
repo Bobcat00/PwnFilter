@@ -58,6 +58,12 @@ public class PwnFilterPlayerListener implements Listener {
 
     public void onPlayerChat(AsyncPlayerChatEvent event) {
 
+//        if (event instanceof AsyncPlayerChatPreviewEvent) {
+//            plugin.getLogger().info("AsyncPlayerChatPreviewEvent" + (event.isCancelled() ? " CANCELLED: " : ": ") + event.getMessage());
+//        } else {
+//            plugin.getLogger().info("AsyncPlayerChatEvent" + (event.isCancelled() ? " CANCELLED: " : ": ") + event.getMessage());
+//        }
+
         if (event.isCancelled()) return;
 
         // Chat preview - Only need to check this in listeners registered to chat previews
