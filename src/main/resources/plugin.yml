@@ -1,10 +1,10 @@
 name: PwnFilter
 main: com.pwn9.PwnFilter.PwnFilter
-version: 3.1.2b
+version: 3.1.2c-SNAPSHOT
 author: tremor77
 description: Complete chat control with the power of RegEx
 website: http://pwn9.com
-api-version: 1.13
+api-version: '1.21'
 softdepend: [Vault]
 
 commands:
