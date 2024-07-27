@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pwn9.PwnFilter</groupId>
   <artifactId>PwnFilter</artifactId>
-  <version>3.1.2c-SNAPSHOT</version>
+  <version>3.1.2c</version>
   <build>
     <plugins>
       <plugin>

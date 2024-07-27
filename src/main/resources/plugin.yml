@@ -1,6 +1,6 @@
 name: PwnFilter
 main: com.pwn9.PwnFilter.PwnFilter
-version: 3.1.2c-SNAPSHOT
+version: 3.1.2c
 author: tremor77
 description: Complete chat control with the power of RegEx
 website: http://pwn9.com
