@@ -3,11 +3,15 @@ package com.pwn9.PwnFilter.listener;
 import com.pwn9.PwnFilter.DataCache;
 import com.pwn9.PwnFilter.FilterState;
 import com.pwn9.PwnFilter.PwnFilter;
+
+import io.papermc.paper.event.player.AsyncChatEvent;
+
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.EventExecutor;
 import org.bukkit.plugin.PluginManager;
@@ -18,15 +22,16 @@ import org.bukkit.plugin.PluginManager;
 
 public class PwnFilterPlayerListener implements Listener {
     private final PwnFilter plugin;
+    private static final LegacyComponentSerializer legacy = LegacyComponentSerializer.legacySection();
 
     public PwnFilterPlayerListener(PwnFilter p) {
         plugin = p;
         PluginManager pm = Bukkit.getServer().getPluginManager();
 
         /* Hook up the Listener for PlayerChat events */
-        pm.registerEvent(AsyncPlayerChatEvent.class, this, PwnFilter.chatPriority,
+        pm.registerEvent(AsyncChatEvent.class, this, PwnFilter.chatPriority,
                 new EventExecutor() {
-                    public void execute(Listener l, Event e) { onPlayerChat((AsyncPlayerChatEvent)e); }
+                    public void execute(Listener l, Event e) { onPlayerChat((AsyncChatEvent)e); }
                 },
                 plugin);
 
@@ -46,7 +51,7 @@ public class PwnFilterPlayerListener implements Listener {
         }
     }
 
-    public void onPlayerChat(AsyncPlayerChatEvent event) {
+    public void onPlayerChat(AsyncChatEvent event) {
 
         if (event.isCancelled()) return;
 
@@ -56,7 +61,7 @@ public class PwnFilterPlayerListener implements Listener {
         // Permissions Check, if player has bypass permissions, then skip everything.
         if (dCache.hasPermission(player,"pwnfilter.bypass.chat")) return;
 
-        String message = event.getMessage();
+        String message = legacy.serialize(event.message());
 
         // Global mute
         if ((PwnFilter.pwnMute) && (!(dCache.hasPermission(player, "pwnfilter.bypass.mute")))) {
@@ -87,11 +92,9 @@ public class PwnFilterPlayerListener implements Listener {
 
         // Only update the message if it has been changed.
         if (state.messageChanged()){
-            event.setMessage(state.message.getColoredString());
+            event.message(legacy.deserialize(state.message.getColoredString()));
         }
         if (state.cancel) event.setCancelled(true);
     }
 
 }
-
-
