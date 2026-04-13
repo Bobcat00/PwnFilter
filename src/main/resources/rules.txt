@@ -29,7 +29,7 @@ then log
 then abort
 
 # shit
-match [5$]\W*h+\W*[i1!]+\W*t|\bs\W*h+\W*[i1!]+\W*t
+match [5$]\W*h+\W*[i1!]+\W*t|s\W*h+\W*[i1!]+\W*t
 then deny
 then warn Watch your language please (2)
 then log
@@ -484,7 +484,7 @@ then log
 then abort
 
 # kill yourself > I love you
-match kill your\s?self
+match kill (your|you|yur|ur)\s?self
 then replace I love you
 then log
 then abort

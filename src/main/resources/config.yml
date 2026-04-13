@@ -22,13 +22,13 @@ debug: false
 
 
 # Strip color from chat. Permission to bypass pwnfilter.color or pwnfilter.bypass
-decolor: true
+decolor: false
 
 # Filter commands as well as chat true/false
 commandfilter: true
 
 # Filter text applied to signs
-signfilter: false
+signfilter: true
 
 # Activate item filter (Naming items with Anvil)  **EXPERIMENTAL FEATURE**
 itemfilter: false
@@ -58,7 +58,6 @@ cmdblist:
 
 # Change priority of PlayerListener (chat)
 # chatpriority: lowest #(default)
-chatpriority: LOW
 
 # Change priority of CommandListener
 # cmdpriority: lowest #(default)
